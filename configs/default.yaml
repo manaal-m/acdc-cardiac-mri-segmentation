@@ -1,0 +1,55 @@
+# Training configuration used to produce results/all_results.json.
+# Not auto-loaded by the notebooks (which set these inline for clarity) --
+# this file documents the exact settings for reproducibility.
+
+dataset:
+  source: kagglehub
+  kaggle_dataset: samdazel/automated-cardiac-diagnosis-challenge-miccai17
+  target_height: 512
+  target_width: 512
+  split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    stratify_by: pathology_group   # NOR, MINF, DCM, HCM, RV
+    split_level: patient           # no slices from one patient cross splits
+    seed: 42
+
+model:
+  architecture: unet               # segmentation_models_pytorch.Unet
+  encoders:
+    - resnet18
+    - vgg16
+    - mobilenet_v2
+    - resnet50
+  encoder_weights: imagenet
+  in_channels: 1
+  num_classes: 4                   # background, LV cavity, RV cavity, myocardium
+
+training:
+  max_epochs: 50
+  batch_size: 8
+  learning_rate: 1.0e-3
+  optimizer: adam
+  lr_scheduler: cosine_annealing
+  lr_scheduler_t_max: 10
+  loss: dice_ce                    # combined Dice + cross-entropy
+  early_stopping:
+    monitor: val_dice
+    mode: max
+    patience: 20
+  checkpoint:
+    monitor: val_dice
+    mode: max
+    save_top_k: 1
+
+evaluation:
+  per_slice_latency:
+    batch_size: 1
+    n_warmup: 20
+    n_measure: 100
+    timing_method: cuda_events
+  batch_latency:
+    batch_size: 8
+    n_batches: 50
+    timing_method: wall_clock

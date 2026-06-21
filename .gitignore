@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Environment
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+
+# Large / generated artifacts -- see checkpoints/README.md and results/ for
+# how to obtain or regenerate these instead of committing them directly.
+checkpoints/*.pth
+checkpoints/*.ckpt
+*.pth
+*.ckpt
+
+# Kaggle / local working dirs
+data/
+.kaggle/

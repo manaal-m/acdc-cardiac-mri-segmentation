@@ -1,0 +1,11 @@
+torch
+torchvision
+pytorch-lightning
+torchmetrics
+segmentation-models-pytorch
+nibabel
+scikit-learn
+matplotlib
+numpy
+pandas
+kagglehub

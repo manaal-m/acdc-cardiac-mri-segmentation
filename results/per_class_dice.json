@@ -1,0 +1,22 @@
+{
+  "resnet18": {
+    "LV": 0.8948,
+    "RV": 0.8964,
+    "Myocardium": 0.9472
+  },
+  "vgg16": {
+    "LV": 0.9056,
+    "RV": 0.9022,
+    "Myocardium": 0.9486
+  },
+  "mobilenet_v2": {
+    "LV": 0.904,
+    "RV": 0.8973,
+    "Myocardium": 0.9492
+  },
+  "resnet50": {
+    "LV": 0.8994,
+    "RV": 0.8982,
+    "Myocardium": 0.951
+  }
+}

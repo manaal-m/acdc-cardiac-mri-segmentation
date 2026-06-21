@@ -1,0 +1,38 @@
+{
+  "resnet18": {
+    "encoder": "resnet18",
+    "dice": 0.8937,
+    "iou": 0.8645,
+    "model_size_mb": 54.73,
+    "inference_ms_batch8_mean": 101.34,
+    "inference_ms_per_slice_mean": 11.74,
+    "inference_ms_per_slice_std": 0.32
+  },
+  "vgg16": {
+    "encoder": "vgg16",
+    "dice": 0.9044,
+    "iou": 0.8741,
+    "model_size_mb": 90.64,
+    "inference_ms_batch8_mean": 333.44,
+    "inference_ms_per_slice_mean": 37.85,
+    "inference_ms_per_slice_std": 0.49
+  },
+  "mobilenet_v2": {
+    "encoder": "mobilenet_v2",
+    "dice": 0.9017,
+    "iou": 0.87,
+    "model_size_mb": 25.54,
+    "inference_ms_batch8_mean": 102.89,
+    "inference_ms_per_slice_mean": 12.23,
+    "inference_ms_per_slice_std": 0.31
+  },
+  "resnet50": {
+    "encoder": "resnet50",
+    "dice": 0.901,
+    "iou": 0.8704,
+    "model_size_mb": 124.35,
+    "inference_ms_batch8_mean": 207.01,
+    "inference_ms_per_slice_mean": 25.5,
+    "inference_ms_per_slice_std": 0.39
+  }
+}
