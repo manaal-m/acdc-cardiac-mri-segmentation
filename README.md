@@ -5,19 +5,22 @@ Code for our paper comparing four U-Net encoder backbones (ResNet18, VGG16, Mobi
 ## Results
 <div align="center">
 
-| Encoder | Dice | mIoU | Latency (ms/slice) | Model size (MB) | Params M | GMACs |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| ResNet18 | 0.9103 ± 0.0051 | 0.8370 ± 0.0082 | 11.74 ± 0.32 | 54.73 | 14.32 | 21.30 |
-| VGG16 | 0.9145 ± 0.0013 | 0.8437 ± 0.0023 | 37.85 ± 0.49 | 90.64| 23.75 | 98.82 |
-| MobileNetV2 | 0.9099 ± 0.0046 | 0.8361 ± 0.0072 | 12.23 ± 0.31 | 25.54| 6.63 | 13.46 |
-| ResNet50 | 0.9060 ± 0.0053 | 0.8298 ± 0.0083 | 25.50 ± 0.39 | 124.35 | 32.52 | 42.23 |
+| Encoder | Dice | mIoU | Latency (ms/slice) (GPU) | Latency (ms/slice) (CPU) | Model size (MB) | Params M | GMACs |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| ResNet18 | 0.9103 ± 0.0051 | 0.8370 ± 0.0082 | 11.74 ± 0.32 | 561.50 ± 19.48 | 54.73 | 14.32 | 21.30 |
+| VGG16 | 0.9145 ± 0.0013 | 0.8437 ± 0.0023 | 37.85 ± 0.49 | 1959.00 ± 7.03 | 90.64| 23.75 | 98.82 |
+| MobileNetV2 | 0.9099 ± 0.0046 | 0.8361 ± 0.0072 | 12.23 ± 0.31 | 394.97 ± 1.37 | 25.54| 6.63 | 13.46 |
+| ResNet50 | 0.9060 ± 0.0053 | 0.8298 ± 0.0083 | 25.50 ± 0.39 | 1019.84 ± 13.93| 124.35 | 32.52 | 42.23 |
 
 </div>
 
-*Latency is single-image (batch size 1) inference time on GPU, mean over 100 timed runs after 20 warm-up iterations. Our chosen deployment model, MobileNetV2, was additionally evaluated for CPU inference, achieving a latency of 375.61 ± 11.48  ms/slice. See [`results/all_results.json`](results/all_results.json) for the full numbers, including batch-8 throughput and per-class Dice ([`results/per_class_dice.json`](results/per_class_dice.json)).*
+*Latency is single-image (batch size 1) inference time (mean ± std over 100 timed runs after 20 warm-up iterations). GPU benchmarking was conducted on a Kaggle T4 GPU, and CPU benchmarking was conducted on an Intel Xeon CPU. See [`results/all_results.json`](results/all_results.json) for the full metrics and [`results/per_class_dice.json`](results/per_class_dice.json) for per-class Dice scores.*
 
-![Metrics comparison](figures/metrics_comparison.png)
-![Segmentation comparison](figures/segmentation_comparison.png)
+## Qualitative Analysis & Failure Cases
+To better understand the differences between the encoder architectures across various cardiac slices, we analyze representative predictions from the test set, including failure modes.
+
+![Segmentation comparison](figures/segmentation_results.png)
+*Figure 1: Side-by-side comparison of model predictions on a Failure Case (top row), a High-Variance Case (middle row), and a Success Case (bottom row).*
 
 ## Repo structure
 
